@@ -17,32 +17,60 @@ def  my_choice():
 
 #the search engine reads tfidf matrix from a csv file
 csv_file = open("stories.csv", "r", newline='')
-read = csv.reader(csv_file, delimiter=',')
+read = csv.reader(csv_file, delimiter=',') 
+a = 1
+terms = list()
+terms_and_numbers = list()
+
+#extra lists of documents
+dog_docs = list()
+goat_docs = list()
+peace_docs = list()
+image_docs = list()
+
+
+
+# read document
 
 for row in read:    
-    print(row[0], row[1], sep=' ')
-    print(row[2], end='\n'*2)
-csvfile.close() 
+    if  a > 1 and a < 5:
+     terms.append(row[0])
+     print(row [0])
+    
 
+     number1 = float(row[1])
+     dog_docs.append(number1)
 
+     number2 = float(row[2])
+     goat_docs.append(number2)
+
+     number3 = float(row[3])
+     peace_docs.append(number3)
+
+     number4 = float(row[4])
+     image_docs.append(number4)
+
+     list_vari = [row[0], number1, number2, number3, number4]
+     terms_and_numbers.append(list_vari)
+
+     a = a + 1
+    if a == 1:
+        # dont use row 0
+        print("a word 2 door 2")
+        a = a + 1
+     
+csv_file.close() 
+print(terms)
+
+print(terms_and_numbers)
+print(terms_and_numbers[2])
 #calculate document vector lengts
 
 #run query
 
 #show ranked output
 
-#Cosinescore(q) acording to manning pg. 125
-float Scores[n] = 0
-intialize length[n]
-for each query term t:
-do calculate wt,d and fetch postings list for t
-    for each pair (d,tftd) in posting list:
-        do Scores[d] += wft,d x wt,q
-Read the array Length[d]
-for each d:
-do Scores[d] = Scores[d]/Length[d]
-return Top K components of Scores[]
-#end manning
+
 
 
 
