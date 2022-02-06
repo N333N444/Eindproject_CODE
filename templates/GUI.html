@@ -2,16 +2,22 @@
 <html>
 
 <head>
+    <!---all styles used throughout the document, css.file wasn't used regarding the small amount of styles-->
     <style>
         OP {font-weight: bold; font-size: 20px;}
-        OPI   {font-style: italic; font-size: 20px;}
-        p    {font-size: 30px;}
+        OPI{font-style: italic; font-size: 20px;}
+        p   {font-size: 30px;}
         .R {font-weight: bold; border: none; pointer-events: none;}
         .W {border-width: 2px; width: 30%; height:100px;}
+        red{background-color: red;}
+        red2{ color: red}
+        bigger{ font-size: 20px}
+        previeuw{background-color: rgba(160, 156, 156, 0.527); background-size: 400px;}
     </style>
 <title>Recommender Engine</title>
 
 <script language="JavaScript">
+    //function is used in option 2 to display the document that is being chosen///
     function selected_Doc() 
     {
         var d=document.getElementById('selection');
@@ -24,6 +30,7 @@
 </head>
 <body>
 <h1>Recommender Engine</h1>
+<!----the recommendation enging has three different options for checking documents-->
 
 <p>Query:</p>
 <ul>
@@ -34,7 +41,7 @@
         <input type = "text" name = "text" class = "W">
     </form>
     <form>
-    <label><OP>Option 2:</OP> <OPI> Upload a document</OPI></label>
+    <label><OP>Option 2:</OP> <OPI> Upload a document</OPI></label><br>
         <input type = "file" name = "file">
         <input type= "submit" value= "Upload document">
     </form>
@@ -44,31 +51,42 @@
 
     <OP>Option 3:</OP> <OPI> Select a document from the collection</OPI>
     <form  method = "POST">
+    <!--selected document is displayed in a textform that isn't interactible-->
     <select id="selection" onchange="selected_Doc();" name = "choose a document">
-        <option value = none>choose a document</option>
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-        <option value="6">6</option>
-        <option value="7">7</option>
-        <option value="8">8</option>
-        <option value="9">9</option>
-        <option value="10">10</option>
+        <option value = none>Select a document</option>
+        <option value="1">greendog.txt</option>
+        <option value="2">obstgoat.txt</option>
+        <option value="3">peace.txt</option>
+        
     </select>
 </ul>
-    <label> Uploaded document</label>
+   <bigger> <label> Uploaded document</label>
    <R> <input type="text" id="selected" class = "R" readonly></R>
-<br>
-   <input type="submit" value="uploading" name="submit">
+<br></bigger>
+   <input type="submit" value="Recommend documents!" name="submit">
 </form>
 
-<OP>result</OP>
-{{matrix_py}}
+<br></br>
+<bigger>
+<p><strong>results</strong><p>
+<hr>
+<!---display the matrix that was calculated in the pythonfile--->
+<strong>{{matrix_py[0][0]}} </strong>: {{matrix_py[1][0]}} | <strong>{{matrix_py[0][1]}} </strong>: {{matrix_py[2][0]}}       | <strong>{{matrix_py[0][2]}} </strong>: | {{matrix_py[3][0]}} | <strong>{{matrix_py[0][3]}} </strong> : <red>{{matrix_py[4][0]}} </red><br>
+<previeuw>...And the <red2>people</red2> in the streets below  were dancing round and round....                                                                                                                                                                            </previeuw>
+<hr>
+
+<strong>{{matrix_py[0][0]}} </strong>: {{matrix_py[1][1]}} | <strong>{{matrix_py[0][1]}} </strong>: {{matrix_py[2][1]}}       | <strong>{{matrix_py[0][2]}} </strong>: | {{matrix_py[3][1]}} | <strong>{{matrix_py[0][3]}} </strong> : <red>{{matrix_py[4][1]}} </red><br>
+<previeuw>...tree trunk that had been struck by lighting, to <red2>join</red2> the steep rocky banks...</previeuw>
+<hr>
+<strong>{{matrix_py[0][0]}} </strong>: {{matrix_py[1][2]}} | <strong>{{matrix_py[0][1]}} </strong>: {{matrix_py[2][2]}}       | <strong>{{matrix_py[0][2]}} </strong>: | {{matrix_py[3][2]}} | <strong>{{matrix_py[0][3]}} </strong> : <red>{{matrix_py[4][2]}}</red><br>
+<previeuw>...and ran into the woods to eat it in <red2>peace</red2>...</previeuw>
+</bigger>
+
 
     
-    
+
+
+
 
 
 
