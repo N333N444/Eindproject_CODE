@@ -270,7 +270,8 @@ def upload_fileS():
 def chosen_file():
     print("Gekozen:", request.form["Select a document"])
 
-    
+
+
 
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD']=True
