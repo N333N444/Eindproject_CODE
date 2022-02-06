@@ -1,33 +1,7 @@
-from flask import Flask
-from flask import render_template
-from flask import request
-from pandas import DataFrame, Series
-import nltk
 import csv
-from nltk.stem import  SnowballStemmer
-from werkzeug.utils import secure_filename
+from turtle import pos
 
-app = Flask(__name__)
-
-UPLOAD_FOLDER = '/'
-
-@app.route('/')
-def  my_GUI():
-    return render_template('GUI.html',)
-
-@app.route('/uploadtext')
-def  upload_file():
-    return render_template('upload.html')
-
-@app.route('/files', methods = ['GET', 'POST'])
-def upload_fileS():
-   if request.method == 'POST':
-      f = request.files['file']
-      f.save(secure_filename(f.filename))
-      return 'file uploaded successfully'
-def chosen_file():
-    print("Gekozen:", request.form["Select a document"])
-
+from sympy import lowergamma
 
 #the search engine reads tfidf matrix from a csv file
 csv_file = open("stories_collection\stories.csv", "r", newline='')
@@ -163,6 +137,7 @@ for document, value  in documents_and_values.items():
 
 
 
+
 #show ranked output
 unranked = scores.items()
 ranked = sorted(unranked, key=lambda score: score[1], reverse=True)
@@ -200,67 +175,5 @@ for a in range(x):
 matrix = [["position", "document", "similarity", "scale"],rank,ranked_texts,ranked_scores,scales]
 print(matrix)
 
-csv_file.close()
 # lemmingsation
 
-
-
-
-# ntlk using tutorial form towardsdatascience
-
-
-stop_doc = open("stop_words\english", "r", newline='')
-
-stopwords = []
-
-while(True): 
-    data = stop_doc.readline()
-    if not data:
-        break
-    stop_word = data.strip()
-    stopwords.append(stop_word)
-
-
-
-print(stopwords)
-
-stop_doc.close()
-
-
-
-with open("news_collection\d1_covid.txt", "r") as covid:
-    corpus = covid.read()
-    
-
-sents = nltk.sent_tokenize(corpus)
-print(sents)
-words = nltk.word_tokenize(corpus)
-print(words)
-
-final_tokens = []
-remove_characters = ["!", "#", "(", ")", "*", "-", "+" ,"/", ";", ":", "<", ">", "=", "?", "@", "[", "]", "^", "_", "\`", "{", "}", "~", "\\", "\"", "\'", "1", "2", "3", "4", "6", "7", "8", "9", "0", ",", "."]
-
-for word in words: 
-    if not word in stopwords:
-        if not word in remove_characters:
-
-            final_tokens.append(word)
-
-
-
-stemmer = SnowballStemmer('english')
-stemmed_words = [stemmer.stem(word) for word in final_tokens]
-
-
-
-
-
-
-    
-
-if __name__ == "__main__":
-    app.config['TEMPLATES_AUTO_RELOAD']=True
-    app.config['DEBUG'] = True
-    app.config['SERVER_NAME'] = "127.0.0.1:5000"
-    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-    app.run()

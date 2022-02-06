@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        OP {font-weight: bold; font-size: 20px;}
+        OPI   {font-style: italic; font-size: 20px;}
+        p    {font-size: 30px;}
+        .R {font-weight: bold; border: none; pointer-events: none;}
+        .W {border-width: 2px; width: 30%; height:100px;}
+    </style>
+<title>Recommender Engine</title>
+
+<script language="JavaScript">
+    function selected_Doc() 
+    {
+        var d=document.getElementById('selection');
+        var display=d.options[d.selectedIndex].text;
+        document.getElementById("selected").value=display;
+    }
+  </script>
+     
+
+</head>
+<body>
+<h1>Recommender Engine</h1>
+
+<p>Query:</p>
+<ul>
+<OP>Option 1:</OP> <OPI> Paste the text of the document</OPI>
+
+<W>
+    <form  method = "POST" enctype ="multipart/form-data">
+        <input type = "text" name = "text" class = "W">
+    </form>
+    <form>
+    <label><OP>Option 2:</OP> <OPI> Upload a document</OPI></label>
+        <input type = "file" name = "file">
+        <input type= "submit" value= "Upload document">
+    </form>
+</p>
+
+
+
+    <OP>Option 3:</OP> <OPI> Select a document from the collection</OPI>
+    <form  method = "POST">
+    <select id="selection" onchange="selected_Doc();" name = "choose a document">
+        <option value = none>choose a document</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+    </select>
+</ul>
+    <label> Uploaded document</label>
+   <R> <input type="text" id="selected" class = "R" readonly></R>
+<br>
+   <input type="submit" value="uploading" name="submit">
+</form>
+
+<OP>result</OP>
+{{matrix_py}}
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+
+
+</html>
