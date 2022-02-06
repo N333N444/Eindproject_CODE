@@ -158,7 +158,7 @@ for document, value  in documents_and_values.items():
 #each document will be ranked through their corresponding score
 unranked = scores.items()
 ranked = sorted(unranked, key=lambda score: score[1], reverse=True)
-print(ranked)
+
 
 # all text ordered by rank
 ranked_texts = []
@@ -197,7 +197,7 @@ for a in range(x):
 
 # build a matrix that can be printed in a html file
 matrix = [["position", "document", "similarity", "scale"],rank,ranked_texts,ranked_scores,scales]
-print(matrix)
+
 
 csv_file.close()
 # lemmingsation
@@ -219,8 +219,6 @@ while(True):
     stopwords.append(stop_word)
 
 
-
-print(stopwords)
 # close the document containing the stopwords
 stop_doc.close()
 
@@ -231,21 +229,45 @@ with open("news_collection\d1_covid.txt", "r") as covid:
     
 # from the body of the tekst divide each term into sentences and words
 sents = nltk.sent_tokenize(corpus)
-print(sents)
 words = nltk.word_tokenize(corpus)
-print(words)
+
 
 # list to store final_tokens in 
 final_tokens = []
-# puntionation characters that need to be removed
+frequency = {}
+# punctation characters that need to be removed
 remove_characters = ["!", "#", "(", ")", "*", "-", "+" ,"/", ";", ":", "<", ">", "=", "?", "@", "[", "]", "^", "_", "\`", "{", "}", "~", "\\", "\"", "\'", "1", "2", "3", "4", "6", "7", "8", "9", "0", ",", "."]
 
-# for each word in the text check if they are not stopwords or puntiation marks 
-for word in words: 
+# for each word in the text check if they are not stopwords or punctation marks 
+for word in words:
     if not word in stopwords:
         if not word in remove_characters:
             # if not the case store the words in "final_tokens"
             final_tokens.append(word)
+
+            # put words and their frequency in a frequency list
+            wordcounts = frequency.get(word, 0)
+            frequency[word] = wordcounts + 1
+
+
+frequent = frequency.keys()
+frequency_dic = {}
+merge_frequency = []
+
+
+# frequency matrix called "frequency_dic"
+for words in frequent:
+    frequency_dic[words] = frequency[words]
+
+# merge dictionaries when multiple
+merge_frequency.append(frequency_dic)
+for i in merge_frequency:
+    try: 
+        i.update(merge_frequency[i + 1])
+    except:
+        print("")
+   
+
 
 
 # each words will be reduced to its stem
@@ -268,7 +290,7 @@ def upload_fileS():
       f.save(secure_filename(f.filename))
       return 'file uploaded successfully'
 def chosen_file():
-    print("Gekozen:", request.form["Select a document"])
+    print("chosen:", request.form["Select a document"])
 
 
 
