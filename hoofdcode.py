@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from pandas import DataFrame, Series
 import nltk
 import csv
 from nltk.stem import  SnowballStemmer
@@ -116,8 +115,8 @@ for document, value  in documents_and_values.items():
         powers_b = []
 
         # calculate the powers of document a
-        for cijfer_3 in example_a:
-            power_a = cijfer_3 ** (2)
+        for digit_a in example_a:
+            power_a = digit_a ** (2)
             powers_a.append(power_a)
 
         # the default of the sum of the powers of the digits in document a and b are 0
@@ -125,18 +124,18 @@ for document, value  in documents_and_values.items():
         sum_powers_b = 0
 
         # all the powers of a will be summed up
-        for cijfer in powers_a:
-            sum_powers_a= sum_powers_a + cijfer
+        for a in powers_a:
+            sum_powers_a= sum_powers_a + a
 
 
         # calculate the powers of document a
-        for cijfer_3 in example_b:
-            power_b = cijfer_3 ** (2)
+        for digit_b in example_b:
+            power_b = digit_b ** (2)
             powers_b.append(power_b)
 
         # all the powers of a will be summed up
-        for cijfer in powers_b:
-            sum_powers_b= sum_powers_b + cijfer
+        for b in powers_b:
+            sum_powers_b= sum_powers_b + b
 
         length_a = sum_powers_a ** (0.5)
         length_b = sum_powers_b ** (0.5)
