@@ -5,6 +5,7 @@ from pandas import DataFrame, Series
 import nltk
 import csv
 from nltk.stem import  SnowballStemmer
+nltk.download("punkt")
 from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
